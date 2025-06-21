@@ -1,8 +1,11 @@
 import {salesProfilePic} from "@/assets";
+import {useLocation} from "react-router";
 
 function UserProfileBadge() {
+    const location = useLocation();
+
     return (
-        <div className="flex flex-row gap-4 p-2 rounded-full bg-[#f8f4fd]">
+        <div className={`flex flex-row gap-4 p-2 rounded-full  ${location.pathname == '/admin' ? 'bg-[#f8f4fd]': 'bg-white'}`}>
             <div className="w-8 h-8 rounded-full overflow-clip">
                 <img src={salesProfilePic} alt="profile pic" className="w-full h-full object-cover" />
             </div>

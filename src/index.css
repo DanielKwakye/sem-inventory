@@ -112,11 +112,26 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@font-face {
-  font-family: Oswald;
-  font-style: normal;
-  font-weight: 200 700;
-  font-display: swap;
+/*@font-face {*/
+/*  font-family: Questrial;*/
+/*  font-style: normal;*/
+/*  font-weight: 200 700;*/
+/*  font-display: swap;*/
+/*}*/
+
+/* Applies to all scrollbars globally */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
 }
 
 @layer base {
