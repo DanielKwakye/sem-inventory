@@ -5,6 +5,7 @@ import {CheckIcon, EditIcon, MinusIcon, PlusCircleIcon, PlusIcon} from "lucide-r
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
+import AddNewProduct from "@/presentation/admin/components/AddNewProduct.tsx";
 
 function AdminIndexPage() {
     return (
@@ -57,10 +58,7 @@ function AdminIndexPage() {
             <div className="bg-[#f8f3f9] p-5 rounded-lg h-full space-y-4 overflow-y-auto">
                 <div className="flex flex-row justify-between">
                     <h1 className="text-[#641713] font-bold">Products</h1>
-                    <div className="flex py-2 px-3 bg-white rounded-full gap-2 items-center">
-                        <PlusCircleIcon size={14}/>
-                        <span className="text-xs">Add new product</span>
-                    </div>
+                    <AddNewProduct />
                 </div>
                 <div className="flex flex-col gap-2">
                     {

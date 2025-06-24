@@ -6,7 +6,7 @@ function App() {
     const location = useLocation();
 
     return (
-        <div className={location.pathname == '/' ? 'bg-[#f8f3f9]' : 'bg-white'}>
+        <div className={location.pathname == '/account/customer' ? 'bg-[#f8f3f9]' : 'bg-white'}>
             <div className="max-w-7xl mx-auto ">
                 <ScrollRestoration/>
 
