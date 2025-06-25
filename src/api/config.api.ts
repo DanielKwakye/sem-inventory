@@ -1,10 +1,9 @@
 import axios from "axios";
+import {apiBaseUrl} from "@/lib/constants.ts";
 
-
-const baseURL = "http://localhost:8000";
 
 const apiClient = axios.create({
-    baseURL: baseURL,
+    baseURL: apiBaseUrl,
 });
 
 

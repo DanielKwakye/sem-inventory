@@ -2,8 +2,18 @@ import {categories} from "@/lib/constants.ts";
 import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
 import {Badge} from "@/components/ui/badge.tsx";
 import {CheckIcon} from "lucide-react";
+import {useAppDispatch, useAppSelector} from "@/store";
+import {adminSliceActions} from "@/store/admin-slice.ts";
 
 function AdminProductCategories() {
+
+    const dispatch = useAppDispatch();
+    const selectedCategory = useAppSelector(state => state.admin.selectedProductCategory)
+
+    const setCategoryHandler = (category: string) => {
+        dispatch(adminSliceActions.updateProductCategory({ category }))
+    }
+
     return (
         <div className="bg-[#f8f3f9] p-5 rounded-lg h-full space-y-4 overflow-y-auto">
             <div className="flex flex-row justify-between">
@@ -16,17 +26,17 @@ function AdminProductCategories() {
                 {
                     categories.map((category, index) => {
                         const delay = index * 0.05; // Optional stagger effect
+                        const selected = category.slug == selectedCategory
 
                         const Icon = category.icon
                         return (
-                            <AnimatedInView key={"item-" + index} delay={delay}>
-                                <div
-                                    className="aspect-square bg-white rounded-lg p-2 flex flex-col justify-between">
+                            <AnimatedInView key={"item-" + category.slug} delay={delay}>
+                                <div className="aspect-square bg-white rounded-lg p-2 flex flex-col justify-between cursor-pointer" onClick={() => setCategoryHandler(category.slug)}>
                                     <div className="flex justify-end">
                                         <Badge
-                                            className={`rounded-full ${index == 0 ? 'bg-[#641713]' : 'bg-[#e9ecfa]'} ${index == 0 ? 'text-white' : 'text-slate-500'}`}>
+                                            className={`rounded-full ${selected ? 'bg-[#641713]' : 'bg-[#e9ecfa]'} ${selected ? 'text-white' : 'text-slate-500'}`}>
                                             {index == 0 && (<CheckIcon/>)}
-                                            <span>{index === 0 ? 'Selected' : 'not selected'}</span>
+                                            <span>{selected ? 'Selected' : 'not selected'}</span>
                                         </Badge>
                                     </div>
                                     <div className="flex justify-center">

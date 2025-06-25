@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge"
 import type {FieldErrors, FieldValues} from "react-hook-form";
 import {toast} from "sonner";
 import type {AxiosError} from "axios";
+import {apiBaseUrl} from "@/lib/constants.ts";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -29,4 +30,11 @@ export const apiErrorsHandler = (error: Error) => {
   toast("Uh oh! Something went wrong", {
     description: axiosError.response?.data?.message || "Sorry! connection failed",
   })
+}
+
+export const getImageUrl = (imagePath?: string) => {
+  if (!imagePath) {
+    return imagePath;
+  }
+  return `${apiBaseUrl}${imagePath}`
 }

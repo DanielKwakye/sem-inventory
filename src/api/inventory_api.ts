@@ -2,11 +2,12 @@ import apiClient from "@/api/config.api.ts";
 import store from "@/store";
 
 export const apiGetProducts = async( category: string = "shoes" ) => {
-    return await apiClient.get(`/products?category=${category}`).then((response) =>  response.data)
+    return await apiClient.get(`/products?category=${category}`).then((response) =>  response.data.data)
 };
 
 export const apiAddNewProduct = async( formData: FormData ) => {
     formData.set("user_role", store.getState().auth.userRole || "")
+    formData.set("category", store.getState().admin.selectedProductCategory)
     return await apiClient.post(`/product`, formData).then((response) =>  response.data)
 };
 

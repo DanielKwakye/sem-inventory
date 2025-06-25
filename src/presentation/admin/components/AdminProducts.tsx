@@ -1,9 +1,39 @@
 import AddNewProduct from "@/presentation/admin/components/AddNewProduct.tsx";
 import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
-import {productExampleImg} from "@/assets";
 import {CheckIcon, MinusIcon, PlusIcon} from "lucide-react";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
+import type {ProductStockModel} from "@/lib/types";
+import {apiGetProducts} from "@/api/inventory_api.ts";
+import {useAppDispatch, useAppSelector} from "@/store";
+import {Skeleton} from "@/components/ui/skeleton.tsx";
+import {getImageUrl} from "@/lib/utils.ts";
+import {useCallback, useEffect} from "react";
+import {adminSliceActions} from "@/store/admin-slice.ts";
 
 function AdminProducts() {
+
+    const queryClient = useQueryClient();
+    const dispatch = useAppDispatch();
+    const adminState = useAppSelector(state => state.admin)
+    const { isPending, data } = useQuery<ProductStockModel[]>({
+        queryKey: ["fetch-admin-products"],
+        queryFn: () => apiGetProducts(adminState.selectedProductCategory),
+    })
+
+    useEffect(() => {
+        if(data && data.length > 0){
+            setSelectedProduct(data[0])
+        }
+    }, [data])
+
+    useEffect(() => {
+        queryClient.invalidateQueries({ queryKey: ['fetch-admin-products' ] }).catch(console.error);
+    }, [adminState.selectedProductCategory])
+
+    const setSelectedProduct = useCallback((selectedProduct: ProductStockModel) => {
+        dispatch(adminSliceActions.updateSelectedProduct({ product: selectedProduct }))
+    },[])
+
     return (
         <div className="bg-[#f8f3f9] p-5 rounded-lg h-full space-y-4 overflow-y-auto">
             <div className="flex flex-row justify-between">
@@ -12,21 +42,27 @@ function AdminProducts() {
             </div>
             <div className="flex flex-col gap-2">
                 {
-                    Array.from({length: 5}).map((_, index) => {
-                        const delay = index * 0.05; // Optional stagger effect
+                     isPending && Array.from({ length: 4 }).map((_, index) => (
+                         <Skeleton key={"item-" + index} className="w-full h-[50px] bg-[#e9ecfa]" />
+                    ))
+                }
+
+                {
+                    data && data.map((item, index) => {
+                        const delay = index * 0.01; // Optional stagger effect
                         return (
-                            <AnimatedInView key={"item-" + index} delay={delay}>
-                                <div className="w-full p-4 bg-white rounded-lg flex flex-row gap-2">
+                            <AnimatedInView key={"item-" + item.id} delay={delay}>
+                                <div className="w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer" onClick={() => setSelectedProduct(item)}>
                                     <div className="aspect-square w-[40%] rounded-lg overflow-clip">
-                                        <img src={productExampleImg} alt="product-eg"
+                                        <img src={getImageUrl(item.image_path)} alt="product-eg"
                                              className="w-full h-full object-cover"/>
                                     </div>
                                     <div className="w-full flex flex-col gap-2">
-                                        <h2 className="text-[#641713] font-bold">Lenovo Laptop 2GB Ram</h2>
+                                        <h2 className="text-[#641713] font-bold">{item.title}</h2>
                                         <p className="text-slate-500 text-xs">Lorem ipsum dolor sit amet,
                                             consectetur
-                                            adipisicing elit. Distinctio, sint!</p>
-
+                                            adipisicing elit. Distinctio, sint!
+                                        </p>
                                         <div className="flex justify-between">
 
                                             <div className="flex flex-row gap-2 items-center">

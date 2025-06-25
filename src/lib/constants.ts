@@ -1,11 +1,18 @@
 import type {ElementType} from "react";
 import {FootprintsIcon, LaptopMinimalIcon, ShirtIcon, SmartphoneIcon} from "lucide-react";
 
+export const apiBaseUrl = "http://localhost:8000";
+
 export const categories: {
     title: string
     slug: string
     icon: ElementType
 }[] = [
+    {
+        title: "Shoes",
+        slug: "shoes",
+        icon: FootprintsIcon
+    },
     {
         title: "Phones",
         slug: "phones",
@@ -20,10 +27,5 @@ export const categories: {
         title: "Shirts",
         slug: "shirts",
         icon: ShirtIcon
-    },
-    {
-        title: "Shoes",
-        slug: "shoes",
-        icon: FootprintsIcon
     }
 ]
