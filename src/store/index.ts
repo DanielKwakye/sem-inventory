@@ -1,10 +1,14 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {type TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import authSlice from "@/store/auth-slice.ts";
+import adminSlice from "@/store/admin-slice.ts";
+import customerSlice from "@/store/customer-slice.ts";
 
 const store = configureStore({
     reducer: {
         auth: authSlice,
+        admin: adminSlice,
+        customer: customerSlice,
     }
 })
 

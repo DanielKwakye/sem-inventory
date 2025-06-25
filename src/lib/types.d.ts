@@ -1,4 +1,4 @@
-interface ProductModel {
+export interface ProductModel {
     id: number;
     title: string,
     category: string,
@@ -10,10 +10,14 @@ interface ProductModel {
     discount_perc: number,
 }
 
-interface StockModel {
+export interface StockModel {
     id: number;
     product_id: number;
     quantity: number;
 }
 
-interface ProductStockModel implements ProductModel, StockModel {}
+export interface ProductStockModel extends ProductModel, StockModel {}
+
+export interface ProductStockModelForm extends ProductStockModel {
+    image?: File;
+}
