@@ -10,13 +10,14 @@ function NavMenuItems() {
 
     return (
         <div className={'flex flex-row gap-2'}>
-            <NavLink to={'/account/admin'} className={location.pathname == "/account/admin" ? activeClasses : inActiveClasses}>
-                <UserCogIcon size={14}  color={location.pathname == "/account/admin" ? '#fff' : '#641713'} />
-                { location.pathname == "/account/admin" && <span className="text-sm">Admin</span> }
+            <NavLink to={'/account/admin'}
+                     className={location.pathname == "/account/admin" ? activeClasses : inActiveClasses}>
+                <UserCogIcon size={14} color={location.pathname == "/account/admin" ? '#fff' : '#641713'}/>
+                {location.pathname == "/account/admin" && <span className="text-sm">Admin</span>}
             </NavLink>
             <NavLink to={'/account/customer'} className={location.pathname == "/account/customer" ? activeClasses : inActiveClasses}>
                 <CalculatorIcon size={14} color={location.pathname == "/account/customer" ? '#fff': '#641713'  } />
-                { location.pathname == "/account/customer" && <span className="text-sm">Sales</span> }
+                { location.pathname == "/account/customer" && <span className="text-sm">Customer</span> }
             </NavLink>
         </div>
     )

@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import AppRouter from "@/routes.tsx";
@@ -8,13 +7,10 @@ import store from "@/store";
 import {Toaster} from "@/components/ui/sonner.tsx";
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-      <Provider store={store} >
-          <QueryClientProvider client={new QueryClient()} >
-              <AppRouter />
-              <Toaster />
-          </QueryClientProvider>
-      </Provider>
-
-  </StrictMode>,
+    <Provider store={store} >
+        <QueryClientProvider client={new QueryClient()} >
+            <AppRouter />
+            <Toaster />
+        </QueryClientProvider>
+    </Provider>,
 )

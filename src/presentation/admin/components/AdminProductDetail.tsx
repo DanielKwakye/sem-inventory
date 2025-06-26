@@ -1,22 +1,52 @@
-import {EditIcon} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {useAppSelector} from "@/store";
-import {getImageUrl} from "@/lib/utils.ts";
+import {useAppDispatch, useAppSelector} from "@/store";
+import {apiErrorsHandler, formErrorsHandler, getImageUrl} from "@/lib/utils.ts";
 import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
+import EditProduct from "@/presentation/admin/components/EditProduct.tsx";
+import type {ProductStockModelForm} from "@/lib/types";
+import {useMutation} from "@tanstack/react-query";
+import {apiUpdateProduct} from "@/api/inventory_api.ts";
+import {toast} from "sonner";
+import {useForm} from "react-hook-form";
+import {LoaderCircle} from "lucide-react";
+import {adminSliceActions} from "@/store/admin-slice.ts";
 
 function AdminProductDetail() {
+
+    const dispatch = useAppDispatch();
     const selectedProduct = useAppSelector(state => state.admin.selectedProduct)
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<ProductStockModelForm>()
+
+    const submitHandler = (data: ProductStockModelForm) => {
+        const payload:ProductStockModelForm  = { ...(selectedProduct!), discount_perc: data.discount_perc }
+        dispatch(adminSliceActions.emitProductEvent({ event: undefined }))
+        mutate(payload)
+    }
+
+    const { mutate, isPending } = useMutation({
+        mutationKey: ['add-product'],
+        mutationFn: (data: ProductStockModelForm) => apiUpdateProduct(selectedProduct!.id, data),
+        onSuccess: () => {
+            toast("Product updated successfully!");
+            dispatch(adminSliceActions.emitProductEvent({ event: "product_updated"}))
+            reset()
+        },
+        onError: apiErrorsHandler
+    })
+
     return (
         <>
             {selectedProduct && (
                 <div className="bg-[#f8f3f9] p-5 rounded-lg h-full space-y-4 overflow-y-auto">
                     <div className="flex flex-row justify-between">
                         <h1 className="text-[#641713] font-bold">Product details</h1>
-                        <div className="flex py-2 px-3 bg-white rounded-full gap-2">
-                            <EditIcon size={14}/>
-                            <span className="text-xs">Edit product</span>
-                        </div>
+                        <EditProduct key={selectedProduct.id} product={ selectedProduct } />
                     </div>
                     <AnimatedInView delay={0.01}>
                         <div className={"w-full bg-white aspect-video overflow-clip rounded-lg"}>
@@ -48,15 +78,25 @@ function AdminProductDetail() {
                             </div>
                         </div>
                     </AnimatedInView>
-                    <AnimatedInView delay={3 * 0.01}>
-                        <div className="w-full p-4 bg-white rounded-lg flex flex-col gap-2">
-                            <label htmlFor="discount" className="text-sm">Set discount (%)</label>
-                            <Input type="number" placeholder="Discount" defaultValue={selectedProduct.discount_perc}/>
-                            <div>
-                                <Button type="submit"><span className="text-sm">Save discount</span></Button>
+                    <form onSubmit={handleSubmit(submitHandler, formErrorsHandler)}>
+                        <AnimatedInView delay={3 * 0.01}>
+                            <div className="w-full p-4 bg-white rounded-lg flex flex-col gap-2">
+                                <label htmlFor="discount" className="text-sm">Set new discount (%)</label>
+                                <div className={"space-y-1"}>
+                                    <Input type="number" placeholder="Discount" step={".01"} { ...register("discount_perc", {
+                                        required: "Field is required"
+                                    })} />
+                                    { errors.discount_perc && (<p className={"text-xs text-red-700"}>{errors.discount_perc.message}</p>)}
+                                </div>
+                                <div>
+                                    <Button type="submit" disabled={isPending}>
+                                        <span className="text-sm">Save discount</span>
+                                        {isPending && (<LoaderCircle size={14} className={"animate-spin"}/>)}
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
-                    </AnimatedInView>
+                        </AnimatedInView>
+                    </form>
                 </div>
             )}
         </>
