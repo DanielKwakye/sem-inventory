@@ -26,8 +26,7 @@ function AdminProductItem({ product: item }: Props ) {
     useEffect(() => {
         if( initialised.current ) {
             dispatch(adminSliceActions.emitProductEvent({ event: undefined }))
-            apiUpdateStock(item.id, stockQty).then((data) => {
-                console.log("returned data=", data)
+            apiUpdateStock(item.id, stockQty).then(() => {
                 dispatch(adminSliceActions.emitProductEvent({ event: "product_updated" }))
             })
         }
@@ -78,8 +77,8 @@ function AdminProductItem({ product: item }: Props ) {
                     </Button>
                 </div>
                 <div className="text-slate-500 text-md pb-1">
-                    <p>CAD ${item.selling_price}</p>
-                    <p className={"text-xs"}>cost price: CAD ${item.cost_price}</p>
+                    <p>CAD ${item.selling_price.toFixed(2)}</p>
+                    <p className={"text-xs"}>cost price: CAD ${item.cost_price.toFixed(2)}</p>
                 </div>
                 <div className="flex justify-between">
 

@@ -1,8 +1,9 @@
-import {adminProfilePic, salesProfilePic} from "@/assets";
+import {salesProfilePic} from "@/assets";
 import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
 import {useNavigate} from "react-router";
 import {useAppDispatch} from "@/store";
 import {updateAuthState} from "@/store/auth-slice.ts";
+import PasswordDialog from "@/presentation/auth/components/PasswordDialog.tsx";
 
 function AuthIndexPage() {
 
@@ -27,16 +28,7 @@ function AuthIndexPage() {
 
                     <div className={"flex gap-4 w-full"}>
                         <AnimatedInView delay={0.1} className={"w-full"}>
-                            <div className={"aspect-square rounded p-4 flex flex-col gap-8 w-full bg-slate-100 cursor-pointer"} onClick={() => loginHandler("admin")}>
-                                <div className="w-8 h-8 rounded-full overflow-clip">
-                                    <img src={adminProfilePic} alt="profile pic"
-                                         className="w-full h-full object-cover"/>
-                                </div>
-                                <div className={"flex justify-center"}>
-                                    Admin
-                                </div>
-
-                            </div>
+                            <PasswordDialog onLoginSuccess={() => loginHandler("admin")} />
                         </AnimatedInView>
                         <AnimatedInView delay={2 * 0.1} className={"w-full"}>
                             <div className={"aspect-square rounded p-4 flex flex-col gap-8 bg-green-100"} onClick={() => loginHandler("customer")}>

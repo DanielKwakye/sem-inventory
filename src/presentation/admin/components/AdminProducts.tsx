@@ -23,7 +23,6 @@ function AdminProducts() {
     useEffect(() => {
         if(data && data.length > 0){
             const updatedProduct = selectedProduct ? data.find(e =>  e.id == selectedProduct?.id) : data[0]
-            console.log("updatedProduct", updatedProduct)
             if(updatedProduct) {
                 setSelectedProduct(updatedProduct)
             }else {
@@ -37,7 +36,6 @@ function AdminProducts() {
         if(event) {
             const shouldRefresh = ["product_added", "product_updated", "product_removed"].includes(event)
             if(shouldRefresh) {
-                console.log("refreshing products...")
                 queryClient.invalidateQueries({ queryKey: ['fetch-admin-products' ] }).catch((error) => {
                     console.log("error syncing records: ", error.message)
                 });

@@ -34,17 +34,14 @@ function AddNewProduct() {
     const [open, setOpen] = useState(false);
 
     const submitHandler = (data: ProductStockModelForm) => {
-        console.log("submitHandler called")
         const formData = new FormData();
         if(!data.image) {
             return;
         }
 
         if (data.image instanceof FileList) {
-            console.log("image is FileList")
             formData.append("image", data.image[0]);  // Use the first file
         } else if (data.image instanceof File) {
-            console.log("image is File")
             formData.append("image", data.image);     // Already a File
         }
 

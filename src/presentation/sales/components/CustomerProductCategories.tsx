@@ -30,9 +30,9 @@ function CustomerProductCategories() {
 
             <div className="grid grid-cols-4 gap-2 ">
                 <AnimatedInView key={"cat-item-1"} delay={0.05}>
-                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer" onClick={() => setSelectedCategory("shoes")}>
+                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer group" onClick={() => setSelectedCategory("shoes")}>
                         <div className="absolute p-4 flex flex-col justify-between items-center w-full h-full">
-                            <img src={shoeCategoryRef} alt="shoes" className="object-cover w-full h-full"/>
+                            <img src={shoeCategoryRef} alt="shoes" className="object-cover w-full h-full group-hover:scale-125 transition duration-700"/>
                         </div>
                         {
                             categorySelected == "shoes" && (
@@ -46,9 +46,9 @@ function CustomerProductCategories() {
                 </AnimatedInView>
 
                 <AnimatedInView key={"cat-item-2"} delay={2 * 0.05}>
-                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer" onClick={() => setSelectedCategory("phones")}>
+                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer group" onClick={() => setSelectedCategory("phones")}>
                         <div className="absolute p-4 flex flex-col justify-between items-center w-full h-full">
-                            <img src={phoneCategoryRef} alt="shoes" className="object-cover w-full h-full"/>
+                            <img src={phoneCategoryRef} alt="shoes" className="object-cover w-full h-full group-hover:scale-125 transition duration-700"/>
                         </div>
                         {
                             categorySelected == "phones" && (
@@ -63,8 +63,8 @@ function CustomerProductCategories() {
                 </AnimatedInView>
 
                 <AnimatedInView key={"cat-item-3"} delay={3 * 0.05}>
-                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer" onClick={() => setSelectedCategory("shirts")}>
-                        <div className="absolute p-4 flex flex-col justify-between items-center w-full h-full">
+                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer group" onClick={() => setSelectedCategory("shirts")}>
+                        <div className="absolute p-4 flex flex-col justify-between items-center w-full h-full group-hover:scale-125 transition duration-700">
                             <img src={shirtCategoryRef} alt="shoes"
                                  className="object-cover w-full h-full"/>
                         </div>
@@ -80,9 +80,9 @@ function CustomerProductCategories() {
                 </AnimatedInView>
 
                 <AnimatedInView key={"cat-item-4"} delay={4 * 0.05}>
-                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer" onClick={() => setSelectedCategory("laptops")}>
+                    <div className="bg-[#f8f3f9] aspect-square rounded-lg relative cursor-pointer group" onClick={() => setSelectedCategory("laptops")}>
                         <div className="absolute p-4 flex flex-col justify-between items-center w-full h-full">
-                            <img src={laptopCategoryRef} alt="shoes" className="object-cover w-full h-full"/>
+                            <img src={laptopCategoryRef} alt="shoes" className="object-cover w-full h-full group-hover:scale-125 transition duration-700"/>
                         </div>
                         {
                             categorySelected == "laptops" && (

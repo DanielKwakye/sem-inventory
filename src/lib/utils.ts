@@ -12,7 +12,6 @@ export function cn(...inputs: ClassValue[]) {
 
 // Handles any form errors
 export const formErrorsHandler = <T extends FieldValues>(errors: FieldErrors<T>) => {
-  console.log("errors", errors);
 
   if (Object.keys(errors).length > 0) {
     const firstErrorKey = Object.keys(errors)[0] as keyof T;

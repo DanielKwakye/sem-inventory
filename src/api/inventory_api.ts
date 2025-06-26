@@ -14,7 +14,6 @@ export const apiAddNewProduct = async( formData: FormData ) => {
 
 export const apiUpdateProduct = async( productId: number,  payload: ProductStockModelForm) => {
     const userRole = store.getState().auth.userRole
-    console.log("payload", payload)
     return await apiClient.put(`/product/${productId}`, { ...payload, "user_role": userRole }).then((response) =>  response.data)
 };
 

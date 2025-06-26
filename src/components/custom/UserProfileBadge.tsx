@@ -1,11 +1,12 @@
 import {adminProfilePic, salesProfilePic} from "@/assets";
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
 import {useAppDispatch, useAppSelector} from "@/store";
 import {LogOutIcon} from "lucide-react";
 import {logout} from "@/store/auth-slice.ts";
 
 function UserProfileBadge() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const dispatch = useAppDispatch();
     const userRole = useAppSelector(state => state.auth.userRole)
@@ -16,7 +17,7 @@ function UserProfileBadge() {
     }
 
     return (
-        <div className={`flex flex-row gap-4 p-2 rounded-full  ${userRole == "admin" ? 'bg-[#f8f4fd]': 'bg-white'}`}>
+        <div className={`flex flex-row gap-4 p-2 rounded-full  ${location.pathname == "/account/admin" ? 'bg-[#f8f4fd]': 'bg-white'}`}>
             <div className="w-8 h-8 rounded-full overflow-clip">
                 <img src={userRole == "admin" ? adminProfilePic : salesProfilePic} alt="profile pic" className="w-full h-full object-cover" />
             </div>

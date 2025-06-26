@@ -65,23 +65,23 @@ function AdminProductDetail() {
                                 <p className="text-sm flex-1 text-right"> {selectedProduct.quantity} </p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <h1 className="font-bold text-[#641713] text-sm flex-1">Cost Price</h1>
-                                <p className="text-sm flex-1 text-right"> CAD {selectedProduct.cost_price}</p>
+                                <h1 className="font-bold text-[#641713] text-sm flex-1">Selling Price</h1>
+                                <p className="text-sm flex-1 text-right"> CAD {selectedProduct.selling_price.toFixed(2)}</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <h1 className="font-bold text-[#641713] text-sm flex-1">Selling Price</h1>
-                                <p className="text-sm flex-1 text-right"> CAD {selectedProduct.selling_price}</p>
+                                <h1 className="font-bold text-[#641713] text-sm flex-1">Cost Price</h1>
+                                <p className="text-sm flex-1 text-right"> CAD {selectedProduct.cost_price.toFixed(2)}</p>
                             </div>
                             <div className="flex flex-row justify-between">
                                 <h1 className="font-bold text-[#641713] text-sm flex-1">Discount</h1>
-                                <p className="text-sm flex-1 text-right"> {selectedProduct.discount_perc}% </p>
+                                <p className="text-sm flex-1 text-right"> {selectedProduct.discount_perc.toFixed(2)}% </p>
                             </div>
                         </div>
                     </AnimatedInView>
                     <form onSubmit={handleSubmit(submitHandler, formErrorsHandler)}>
                         <AnimatedInView delay={3 * 0.01}>
                             <div className="w-full p-4 bg-white rounded-lg flex flex-col gap-2">
-                                <label htmlFor="discount" className="text-sm">Set new discount (%)</label>
+                            <label htmlFor="discount" className="text-sm">Set new discount (%)</label>
                                 <div className={"space-y-1"}>
                                     <Input type="number" placeholder="Discount" step={".01"} { ...register("discount_perc", {
                                         required: "Field is required"
