@@ -49,9 +49,9 @@ function AdminProductDetail() {
                         <EditProduct key={selectedProduct.id} product={ selectedProduct } />
                     </div>
                     <AnimatedInView delay={0.01}>
-                        <div className={"w-full bg-white aspect-video overflow-clip rounded-lg"}>
+                        <div className={"w-full bg-white aspect-video overflow-clip rounded-lg cursor-pointer"}>
                             <img src={getImageUrl(selectedProduct.image_path)} alt="Product image"
-                                 className={"w-full h-full object-cover"}/>
+                                 className={"w-full h-full object-cover hover:scale-125 transition duration-500"} />
                         </div>
                     </AnimatedInView>
                     <AnimatedInView delay={2 * 0.01}>

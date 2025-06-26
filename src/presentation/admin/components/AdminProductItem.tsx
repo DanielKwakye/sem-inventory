@@ -63,11 +63,11 @@ function AdminProductItem({ product: item }: Props ) {
     }
 
     return (
-        <div className="w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer"
+        <div className="w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer group hover:border hover:border-[#641713]"
              onClick={() => setSelectedProduct(item)}>
             <div className="aspect-square w-[40%] rounded-lg overflow-clip">
                 <img src={getImageUrl(item.image_path)} alt="product-eg"
-                     className="w-full h-full object-cover"/>
+                     className="w-full h-full object-cover group-hover:scale-125 transition duration-500" />
             </div>
             <div className="w-full flex flex-col gap-1">
                 <div className={"flex flex-row justify-between items-center"}>
