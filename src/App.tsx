@@ -10,7 +10,7 @@ function App() {
             <div className="max-w-7xl mx-auto ">
                 <ScrollRestoration/>
 
-                <div className="py-5 space-y-5 mx-12 h-screen">
+                <div className="py-5 space-y-5 mx-12 h-screen overflow-y-auto">
                     <Navbar/>
                     {/*    Main layout */}
                     <Outlet/>

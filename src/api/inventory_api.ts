@@ -31,7 +31,7 @@ export const apiDeleteProduct = async( productId: number ) => {
     }).then((response) =>  response.data)
 };
 
-export const apiCheckout = async( payload: {}[]  & { "user_role": string | undefined }  ) => {
-    payload['user_role'] = store.getState().auth.userRole
-    return await apiClient.post(`/checkout`, payload).then((response) =>  response.data)
+export const apiCheckout = async( payload: { product_id: number, quantity:number }[]   ) => {
+    const userRole = store.getState().auth.userRole
+    return await apiClient.post(`/checkout`, { "user_role": userRole, payload: payload}).then((response) =>  response.data)
 };
