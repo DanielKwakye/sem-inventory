@@ -54,6 +54,7 @@ function AddNewProduct() {
         formData.append("tax_value", String(data.tax_value));
         formData.append("discount_perc", String(data.discount_perc));
         formData.append("quantity", String(data.quantity));
+        dispatch(adminSliceActions.emitProductEvent({ event: undefined }))
         mutate(formData)
     }
 
