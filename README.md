@@ -1,4 +1,6 @@
-# React + TypeScript + Vite
+## Application links
+- frontend: https://inventory-sem-3-mun.web.app
+- backend: https://inventory-py-backend.onrender.com
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
