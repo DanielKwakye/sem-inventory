@@ -23,8 +23,11 @@ function AdminProducts() {
     useEffect(() => {
         if(data && data.length > 0){
             const updatedProduct = selectedProduct ? data.find(e =>  e.id == selectedProduct?.id) : data[0]
+            console.log("updatedProduct", updatedProduct)
             if(updatedProduct) {
                 setSelectedProduct(updatedProduct)
+            }else {
+                setSelectedProduct(data[0])
             }
 
         }

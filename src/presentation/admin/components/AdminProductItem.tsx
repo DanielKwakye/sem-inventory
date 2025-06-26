@@ -1,10 +1,13 @@
-import {getImageUrl} from "@/lib/utils.ts";
-import {CheckIcon, MinusIcon, PlusIcon} from "lucide-react";
+import {apiErrorsHandler, getImageUrl} from "@/lib/utils.ts";
+import {CheckIcon, LoaderCircle, MinusIcon, PlusIcon, Trash2Icon} from "lucide-react";
 import {useAppDispatch, useAppSelector} from "@/store";
 import {useCallback, useEffect, useRef, useState} from "react";
 import type {ProductStockModel} from "@/lib/types";
 import {adminSliceActions} from "@/store/admin-slice.ts";
-import { apiUpdateStock} from "@/api/inventory_api.ts";
+import {apiDeleteProduct, apiUpdateStock} from "@/api/inventory_api.ts";
+import {Button} from "@/components/ui/button.tsx";
+import {useMutation} from "@tanstack/react-query";
+import {toast} from "sonner";
 
 type Props = {
     product: ProductStockModel;
@@ -33,6 +36,15 @@ function AdminProductItem({ product: item }: Props ) {
         }
     }, [stockQty])
 
+    const { mutate: mutateDelete, isPending: isPendingDelete } = useMutation({
+        mutationKey: ['delete-product'],
+        mutationFn: () => apiDeleteProduct(item.id),
+        onSuccess: () => {
+            toast("Product deleted successfully!");
+            dispatch(adminSliceActions.emitProductEvent({ event: "product_removed"}))
+        },
+        onError: apiErrorsHandler
+    })
 
     const addStockQuantity = useCallback(() => {
         setStockQty(prevState => {
@@ -46,6 +58,11 @@ function AdminProductItem({ product: item }: Props ) {
         })
     },[])
 
+    const deleteProductHandler = ()=>  {
+        dispatch(adminSliceActions.emitProductEvent({ event: undefined }))
+        mutateDelete()
+    }
+
     return (
         <div className="w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer"
              onClick={() => setSelectedProduct(item)}>
@@ -53,8 +70,13 @@ function AdminProductItem({ product: item }: Props ) {
                 <img src={getImageUrl(item.image_path)} alt="product-eg"
                      className="w-full h-full object-cover"/>
             </div>
-            <div className="w-full flex flex-col gap-2">
-                <h2 className="text-[#641713] font-bold">{item.title}</h2>
+            <div className="w-full flex flex-col gap-1">
+                <div className={"flex flex-row justify-between items-center"}>
+                    <h2 className="text-[#641713] font-bold">{item.title}</h2>
+                    <Button variant={"ghost"} disabled={isPendingDelete} onClick={() => deleteProductHandler()}>
+                        { isPendingDelete ? (<LoaderCircle size={14} className={"animate-spin"}/>) : (<Trash2Icon/>) }
+                    </Button>
+                </div>
                 <div className="text-slate-500 text-md pb-1">
                     <p>CAD ${item.selling_price}</p>
                     <p className={"text-xs"}>cost price: CAD ${item.cost_price}</p>
