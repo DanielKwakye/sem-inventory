@@ -72,7 +72,8 @@ export function PasswordDialog({ onLoginSuccess }: Props) {
                                             required: "This field is required",
                                             validate: (value) =>
                                                 value === "123456" || "Password must be 123456",
-                                        })}
+                                            }
+                                        )}
                                     />
                                     {errors.password && (<div className={"text-xs text-red-700"}>{errors.password.message}</div>)}
                                 </div>
