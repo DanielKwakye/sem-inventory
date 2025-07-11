@@ -28,10 +28,11 @@ function AuthIndexPage() {
 
                     <div className={"flex gap-4 w-full"}>
                         <AnimatedInView delay={0.1} className={"w-full"}>
-                            <PasswordDialog onLoginSuccess={() => loginHandler("admin")} />
+                            <PasswordDialog onLoginSuccess={() => loginHandler("admin")}/>
                         </AnimatedInView>
                         <AnimatedInView delay={2 * 0.1} className={"w-full"}>
-                            <div className={"aspect-square rounded p-4 flex flex-col gap-8 bg-green-100"} onClick={() => loginHandler("customer")}>
+                            <div className={"aspect-square rounded p-4 flex flex-col gap-8 bg-green-100"}
+                                 onClick={() => loginHandler("customer")}>
                                 <div className="w-8 h-8 rounded-full overflow-clip">
                                     <img src={salesProfilePic} alt="profile pic"
                                          className="w-full h-full object-cover"/>
@@ -42,6 +43,13 @@ function AuthIndexPage() {
 
                             </div>
                         </AnimatedInView>
+                    </div>
+
+                    <div>
+                        <p className="tracking-wide">Created by:</p>
+                        <div className={"h-2"}></div>
+                        <p className={"text-sm font-bold"}>Daniel Kwakye: 202381843</p>
+                        <p className={"text-sm font-bold"}>OluwaDamilola Oluwalowo: 202291411</p>
                     </div>
 
                 </div>
@@ -57,11 +65,11 @@ function AuthIndexPage() {
                     </h1>
                     {/*Our AI learns from your rental history, track rent, send automatic reminders,
                         manage tenants, and prepare for taxes*/}
-                    <div>
-                        <p className="text-primary-foreground tracking-wide">Created by:</p>
-                        <p className={"text-sm text-white/50"}>Daniel Kwakye: 202381843</p>
-                        <p className={"text-sm text-white/50"}>Damilola Oluwalowo: </p>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <p className="text-primary-foreground tracking-wide">Created by:</p>*/}
+                    {/*    <p className={"text-sm text-white/50"}>Daniel Kwakye: 202381843</p>*/}
+                    {/*    <p className={"text-sm text-white/50"}>OluwaDamilola Oluwalowo: 202291411</p>*/}
+                    {/*</div>*/}
                 </div>
 
 
