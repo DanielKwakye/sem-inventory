@@ -2,6 +2,9 @@
 
 This is the frontend for an **Inventory Management System**, developed using **React**, **Vite**, and **TypeScript**. It provides a modern, responsive interface for administrators to manage products, update inventory, and process checkouts. The frontend integrates tightly with a FastAPI backend, using RESTful APIs to perform real-time inventory operations.
 
+## Hosted link
+` https://inventory-sem-3-mun.web.app/ ` 
+
 ## Screenshots
 ![Screenshot](screenshots/screen-1.png)
 ![Screenshot](screenshots/screen-2.png)
