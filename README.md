@@ -1,56 +1,45 @@
-## Application links
-- frontend: https://inventory-sem-3-mun.web.app
-- backend: https://inventory-py-backend.onrender.com
+# 🧾 Inventory Management System – React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for an **Inventory Management System**, developed using **React**, **Vite**, and **TypeScript**. It provides a modern, responsive interface for administrators to manage products, update inventory, and process checkouts. The frontend integrates tightly with a FastAPI backend, using RESTful APIs to perform real-time inventory operations.
 
-Currently, two official plugins are available:
+## Screenshots
+![Screenshot](screenshots/screen-1.png)
+![Screenshot](screenshots/screen-2.png)
+![Screenshot](screenshots/screen-3.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Project Purpose
 
-## Expanding the ESLint configuration
+The goal of this project is to provide a clean and functional interface for inventory control, allowing administrative users to:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- View product listings filtered by category
+- Add, edit, or delete products
+- Upload product images
+- Manage product stock levels
+- Perform checkout transactions for multiple items
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚙️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Framework:** React + Vite
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Axios
+- **Form Handling:** React Hook Form (or alternative)
+- **Testing:** (Optional — Jest, React Testing Library)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🚀 Running the Project Locally
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/inventory-frontend.git
+cd inventory-frontend
+npm install

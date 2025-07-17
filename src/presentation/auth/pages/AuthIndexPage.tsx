@@ -46,7 +46,7 @@ function AuthIndexPage() {
                     </div>
 
                     <div>
-                        <p className="tracking-wide">Created by:</p>
+                        <p className="tracking-wide text-muted-foreground">Created by:</p>
                         <div className={"h-2"}></div>
                         <p className={"text-sm font-bold"}>Daniel Kwakye: 202381843</p>
                         <p className={"text-sm font-bold"}>OluwaDamilola Oluwalowo: 202291411</p>

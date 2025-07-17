@@ -85,6 +85,7 @@ function AdminProductItem({ product: item }: Props ) {
                     <div className="flex flex-row gap-2 items-center">
 
                         <div
+                            id={"subStockQuantity-"+item.id}
                             className="rounded-full w-8 h-8 bg-[#f8f3f9] flex justify-center items-center cursor-pointer"
                             onClick={subStockQuantity}
                         >
@@ -94,9 +95,10 @@ function AdminProductItem({ product: item }: Props ) {
                             className="rounded-full w-8 h-8 bg-[#f8f3f9] flex justify-center items-center"
 
                         >
-                            <span className="text-[#641713] text-xs">{stockQty}</span>
+                            <span className="text-[#641713] text-xs" id={"stockQty-"+item.id}>{stockQty}</span>
                         </div>
                         <div
+                            id={"addStockQuantity-"+item.id}
                             className="rounded-full w-8 h-8 bg-[#f8f3f9] flex justify-center items-center cursor-pointer"
                             onClick={addStockQuantity}
                         >
