@@ -22,9 +22,9 @@ function CustomerProductItem({ product }: Props) {
     }
 
     return (
-        <div className="rounded-lg aspect-square relative overflow-clip group">
+        <div id={`customer-product-`+product.id} className={`rounded-lg aspect-square relative overflow-clip group ${product.id == 2 && ("border-2 border-dashed border-blue-500")}`}>
             <img src={getImageUrl(product.image_path)} alt="product"
-                 className="object-contain w-full h-full absolute group-hover:scale-125 transition duration-500" />
+                 className={`object-contain w-full h-full absolute group-hover:scale-125 transition duration-500 ${product.id == 2 && ("animate-pulse")}`} />
             <div className="bg-black/30 w-full h-full absolute"></div>
             <div className="absolute w-full h-full flex flex-col justify-between p-4 cursor-pointer" onClick={addProductToCartHandler}>
 
@@ -36,9 +36,9 @@ function CustomerProductItem({ product }: Props) {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <div className="flex flex-col">
+                    <div className={`flex flex-col`}>
                         <h1 className="font-bold text-white text-sm">{ product.title }</h1>
-                        <p className="text-sm text-white/80">{product.quantity} items available</p>
+                        <p className={`text-sm text-white/80  ${product.id == 2 && `border-2 border-dashed border-blue-500 p-1 m-1 font-bold`} `}>{product.quantity} items available</p>
                     </div>
                     <div className="flex flex-col">
                         <p className={"text-white text-lg font-bold"}>CAD ${product.selling_price.toFixed(2)}</p>

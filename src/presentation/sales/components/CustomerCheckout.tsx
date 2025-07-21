@@ -75,7 +75,7 @@ function CustomerCheckout() {
             <CustomerOrderSummary />
             {/*    End of Order summary */}
 
-            <Button onClick={checkoutHandler} disabled={isPending}>
+            <Button id={"place-order-button"} onClick={checkoutHandler} disabled={isPending}>
                 {isPending ? (<LoaderCircleIcon className={"animate-spin"} />) : (<ReceiptIcon/>)}
                 <span>Place Order | CAD ${totalPrice.toFixed(2)} </span>
             </Button>

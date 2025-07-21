@@ -29,7 +29,7 @@ function CustomerCart() {
             {
                 cartItems.map((cartItem) => {
                     return (
-                        <div key={cartItem.id} className="border border-slate-100 rounded-lg flex flex-row p-2 gap-2">
+                        <div id={"cartItem-"+cartItem.product.id} key={cartItem.id} className="border border-slate-100 rounded-lg flex flex-row p-2 gap-2">
                             <div className="aspect-square w-[30%] rounded-lg overflow-clip">
                                 <img src={getImageUrl(cartItem.product.image_path)} alt="prdouct"
                                      className="object-cover w-full h-full"/>

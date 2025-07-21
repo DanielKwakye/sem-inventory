@@ -14,13 +14,17 @@ function NavMenuItems() {
     return (
         <div className={'flex flex-row gap-2'}>
             <NavLink to={'/account/admin'}
-                     className={location.pathname == "/account/admin" ? activeClasses : inActiveClasses}>
+                     className={location.pathname == "/account/admin" ? activeClasses : inActiveClasses}
+                     id={"admin-nav-item"}
+            >
                 <UserCogIcon size={14} color={location.pathname == "/account/admin" ? '#fff' : '#641713'}/>
                 {location.pathname == "/account/admin" && <span className="text-sm">Admin</span>}
             </NavLink>
             <NavLink to={'/account/customer'} onClick={() => {
                 dispatch(cartSliceActions.clearCart());
-            }} className={location.pathname == "/account/customer" ? activeClasses : inActiveClasses}>
+            }} className={location.pathname == "/account/customer" ? activeClasses : inActiveClasses}
+                     id={"customer-nav-item"}
+            >
                 <CalculatorIcon size={14} color={location.pathname == "/account/customer" ? '#fff': '#641713'  } />
                 { location.pathname == "/account/customer" && <span className="text-sm">Customer</span> }
             </NavLink>

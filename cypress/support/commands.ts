@@ -38,11 +38,13 @@
 
 // @ts-ignore
 Cypress.Commands.add('loginAsAdmin', () => {
-    cy.visit('https://inventory-sem-3-mun.web.app');
+    cy.visit('/');
 
     cy.contains('Admin').click();
+    cy.wait(1000)
     cy.get('#password').type('123456');
     cy.get("button[type='submit']").click();
+    cy.wait(1000)
 
     // Confirm that we're on the admin dashboard
     cy.url().should('include', '/account/admin');

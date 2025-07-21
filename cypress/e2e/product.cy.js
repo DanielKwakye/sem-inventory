@@ -1,7 +1,11 @@
 describe('Add Product Functionality', () => {
 
+    before(() => {
+        cy.loginAsAdmin(); // Uses your custom Cypress command
+    })
+
     it('AP01 - Adds valid product as Admin', () => {
-        cy.visit('/your-admin-url'); // Replace with real path
+        cy.visit('/'); // Replace with real path
 
         cy.contains('Add new product').click();
 
@@ -17,8 +21,17 @@ describe('Add Product Functionality', () => {
         cy.contains('Product added successfully!').should('exist');
     });
 
+});
+
+
+describe('Should fail if product has no name', () => {
+
+    before(() => {
+        cy.loginAsAdmin(); // Uses your custom Cypress command
+    })
+
     it('AP02 - Fails to add product without name', () => {
-        cy.visit('/your-admin-url');
+        cy.visit('/');
         cy.contains('Add new product').click();
 
         cy.get('input[type="file"]').selectFile('cypress/fixtures/sample.jpg', { force: true });
@@ -32,8 +45,17 @@ describe('Add Product Functionality', () => {
         cy.get('div.text-red-700').should('contain.text', 'Title is required');
     });
 
+
+});
+
+describe('Should fail if product price is negative', () => {
+
+    before(() => {
+        cy.loginAsAdmin(); // Uses your custom Cypress command
+    })
+
     it('AP04 - Fails to add product with negative price', () => {
-        cy.visit('/your-admin-url');
+        cy.visit('/');
         cy.contains('Add new product').click();
 
         cy.get('input[type="file"]').selectFile('cypress/fixtures/sample-product-1.avif', { force: true });
@@ -47,5 +69,6 @@ describe('Add Product Functionality', () => {
         cy.contains('Submit').click();
         cy.get('div.text-red-700').should('exist'); // Add message if specific
     });
+
 
 });

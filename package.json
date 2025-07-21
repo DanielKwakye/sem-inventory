@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:open": "npx cypress open"
+    "cy:open": "npx cypress open",
+    "test:e2e": "start-server-and-test dev http://localhost:5173 'cypress open'"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
@@ -46,6 +47,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "start-server-and-test": "^2.0.12",
     "tw-animate-css": "^1.3.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",

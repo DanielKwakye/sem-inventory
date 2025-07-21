@@ -14,7 +14,7 @@ function AdminProducts() {
     const queryClient = useQueryClient();
 
     const adminState = useAppSelector(state => state.admin)
-    const { selectedProduct, event } = useAppSelector(state => state.admin)
+    const { selectedProduct, event: adminEvent } = useAppSelector(state => state.admin)
     const { isPending, data } = useQuery<ProductStockModel[]>({
         queryKey: ["fetch-admin-products"],
         queryFn: () => apiGetProducts(adminState.selectedProductCategory),
@@ -33,15 +33,23 @@ function AdminProducts() {
     }, [data])
 
     useEffect(() => {
-        if(event) {
-            const shouldRefresh = ["product_added", "product_updated", "product_removed"].includes(event)
+        if(adminEvent) {
+            const shouldRefresh = ["product_added", "product_updated", "product_removed"].includes(adminEvent)
             if(shouldRefresh) {
-                queryClient.invalidateQueries({ queryKey: ['fetch-admin-products' ] }).catch((error) => {
-                    console.log("error syncing records: ", error.message)
-                });
+                refreshProducts()
             }
         }
-    }, [event]);
+    }, []);
+
+    useEffect(() => {
+        refreshProducts()
+    }, []);
+
+    const refreshProducts = () => {
+        queryClient.invalidateQueries({ queryKey: ['fetch-admin-products' ] }).catch((error) => {
+            console.log("error syncing records: ", error.message)
+        });
+    }
 
     const dispatch = useAppDispatch();
     const setSelectedProduct = useCallback((selectedProduct: ProductStockModel) => {

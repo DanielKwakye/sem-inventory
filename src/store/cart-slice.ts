@@ -11,7 +11,6 @@ type CartStateType = {
     taxAmount: number,
     discountAmount: number,
     event: CartEventType
-
 }
 
 const cartState: CartStateType = {
