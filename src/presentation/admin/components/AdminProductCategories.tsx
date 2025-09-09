@@ -35,7 +35,7 @@ function AdminProductCategories() {
                                     <div className="flex justify-end">
                                         <Badge
                                             className={`rounded-full ${selected ? 'bg-[#641713]' : 'bg-[#e9ecfa]'} ${selected ? 'text-white' : 'text-slate-500'}`}>
-                                            {index == 0 && (<CheckIcon/>)}
+                                            {selected && (<CheckIcon/>)}
                                             <span>{selected ? 'Selected' : 'not selected'}</span>
                                         </Badge>
                                     </div>

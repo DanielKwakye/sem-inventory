@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "@/store";
 import type {ProductStockModel} from "@/lib/types";
 import {cartSliceActions} from "@/store/cart-slice.ts";
 import {getImageUrl} from "@/lib/utils.ts";
+import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
 
 
 function CustomerCart() {
@@ -25,11 +26,15 @@ function CustomerCart() {
     }
 
     return (
-        <>
+        <div className={"space-y-2"}>
             {
-                cartItems.map((cartItem) => {
+                cartItems.map((cartItem, index) => {
+
+                    const delay = index * 0.01;
+
                     return (
-                        <div id={"cartItem-"+cartItem.product.id} key={cartItem.id} className="border border-slate-100 rounded-lg flex flex-row p-2 gap-2">
+                        <AnimatedInView key={"item-" + cartItem.id} delay={delay}>
+                            <div id={"cartItem-"+cartItem.product.id} key={cartItem.id} className="border border-slate-100 rounded-lg flex flex-row p-2 gap-2">
                             <div className="aspect-square w-[30%] rounded-lg overflow-clip">
                                 <img src={getImageUrl(cartItem.product.image_path)} alt="prdouct"
                                      className="object-cover w-full h-full"/>
@@ -55,10 +60,11 @@ function CustomerCart() {
                                 </div>
                             </div>
                         </div>
+                        </AnimatedInView>
                     )
                 })
             }
-        </>
+        </div>
     )
 }
 

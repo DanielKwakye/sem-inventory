@@ -9,6 +9,7 @@ import {useMutation} from "@tanstack/react-query";
 import {apiCheckout} from "@/api/inventory_api.ts";
 import {apiErrorsHandler} from "@/lib/utils.ts";
 import {useEffect} from "react";
+import AnimatedInView from "@/components/custom/AnimatedInView.tsx";
 
 function CustomerCheckout() {
 
@@ -67,18 +68,27 @@ function CustomerCheckout() {
 
             {/* Cart */}
 
-            <CustomerCart />
+            <AnimatedInView key={"item-cart"} delay={0.01}>
+                <CustomerCart />
+            </AnimatedInView>
+
 
             {/*    End of Cart */}
 
             {/*    Order summary */}
-            <CustomerOrderSummary />
+            <AnimatedInView key={"item-order-summary"} delay={2 * 0.01}>
+                <CustomerOrderSummary />
+            </AnimatedInView>
             {/*    End of Order summary */}
 
-            <Button id={"place-order-button"} onClick={checkoutHandler} disabled={isPending}>
-                {isPending ? (<LoaderCircleIcon className={"animate-spin"} />) : (<ReceiptIcon/>)}
-                <span>Place Order | CAD ${totalPrice.toFixed(2)} </span>
-            </Button>
+
+            <AnimatedInView key={"item-place-order-buttons"} delay={3 * 0.01}>
+                <Button id={"place-order-button"} onClick={checkoutHandler} disabled={isPending}>
+                    {isPending ? (<LoaderCircleIcon className={"animate-spin"} />) : (<ReceiptIcon/>)}
+                    <span>Place Order | CAD ${totalPrice.toFixed(2)} </span>
+                </Button>
+            </AnimatedInView>
+
 
         </div>
     )

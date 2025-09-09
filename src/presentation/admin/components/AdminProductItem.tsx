@@ -64,7 +64,7 @@ function AdminProductItem({ product: item }: Props ) {
     }
 
     return (
-        <div className={`w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer group hover:border hover:border-[#641713] ${item.id == 2 ? 'border-4 border-blue-500 border-dashed' : ''}`}
+        <div className={`w-full p-4 bg-white rounded-lg flex flex-row gap-2 cursor-pointer group hover:border hover:border-[#641713]`}
              onClick={() => setSelectedProduct(item)}>
             <div className="aspect-square w-[40%] rounded-lg overflow-clip">
                 <img src={getImageUrl(item.image_path)} alt="product-eg"
@@ -93,7 +93,7 @@ function AdminProductItem({ product: item }: Props ) {
                             <MinusIcon size={14} className="text-[#641713]"/>
                         </div>
                         <div
-                            className={ `rounded-full w-8 h-8 bg-[#f8f3f9] flex justify-center items-center ${item.id == 2 && (" border-2 border-dashed border-blue-500 ")}` }
+                            className={ `rounded-full w-8 h-8 bg-[#f8f3f9] flex justify-center items-center` }
 
                         >
                             <span className="text-[#641713] text-xs" id={"stockQty-"+item.id}>{stockQty}</span>
