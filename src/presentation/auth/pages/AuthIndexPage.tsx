@@ -5,7 +5,7 @@ import {useAppDispatch} from "@/store";
 import {updateAuthState} from "@/store/auth-slice.ts";
 import PasswordDialog from "@/presentation/auth/components/PasswordDialog.tsx";
 import BackendLoader from "@/presentation/auth/pages/BackendLoader.tsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import SystemReadinessDialog, {type ModalHandle} from "@/presentation/auth/components/SystemReadinessDialog.tsx";
 
 function AuthIndexPage() {
@@ -14,6 +14,14 @@ function AuthIndexPage() {
     const dispatch = useAppDispatch();
     const [systemReady, setSystemReady] = useState<boolean>(false);
     const systemReadyRef = useRef<ModalHandle | undefined>(undefined);
+
+    useEffect(() => {
+
+        //  close readiness dialog is its opened
+        if (systemReady) {
+            systemReadyRef.current?.close()
+        }
+    }, [systemReady])
 
     const loginHandler = (role: "customer" | "admin") => {
         if (!systemReady) {

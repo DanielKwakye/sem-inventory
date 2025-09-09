@@ -39,7 +39,7 @@ const SystemReadinessDialog = forwardRef((_, ref: Ref<ModalHandle | undefined>)=
                     <AlertDialogHeader>
                         <AlertDialogTitle className={"text-red-500 inline-flex gap-1 items-center"}>
                             <LoaderIcon className={"animate-spin text-red-500"} />
-                            <p className="ml-4 text-lg text-red-500 font-bold">Starting demo backend </p>
+                            <p className="ml-4 text-lg text-red-500 font-bold">Starting demo backend - Just a minute </p>
                         </AlertDialogTitle>
                         <AlertDialogDescription className={"text-sm text-foreground"}>
                             The Demo backend usually goes down after sometime of inactivity

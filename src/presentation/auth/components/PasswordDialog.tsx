@@ -66,7 +66,7 @@ export function PasswordDialog({ onLoginSuccess, systemReady }: Props) {
                     { !systemReady ? (
                             <div className={"inline-flex gap-1 items-center"}>
                                 <LoaderIcon className={"animate-spin text-red-500"} />
-                                <p className="ml-4 text-lg text-red-500 font-bold">Starting backend...</p>
+                                <p className="ml-4 text-lg text-red-500 font-bold">Starting backend.. - Just a minute</p>
                             </div>
                         ) : (
                         <form onSubmit={handleSubmit(submitHandler, formErrorsHandler)}>
